@@ -33,8 +33,14 @@ $this->params['breadcrumbs'][] = $this->title;
             'Email:email',
             'Surname',
             'Code',
-            'group_id',
-        ],
+            [
+                'label'=>'Группа',
+                'value'=>
+                    function ($m) {
+                        return $m->group->Title;
+                    }
+            ],
+            ]
     ]) ?>
 
 </div>

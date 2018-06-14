@@ -53,8 +53,5 @@ class Group extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getStudents()
-    {
-        return $this->hasMany(Student::className(), ['group_id' => 'ID']);
-    }
+
 }

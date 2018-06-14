@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Group;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Student */
@@ -20,7 +22,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'Code')->textInput() ?>
 
-    <?= $form->field($model, 'group_id')->textInput() ?>
+    <?= $form->field($model, 'group_id')->dropDownList(ArrayHelper::map(Group::find()->all(),'ID', 'Title')) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

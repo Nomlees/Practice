@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\StudentSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,7 +31,13 @@ $this->params['breadcrumbs'][] = $this->title;
             'Email:email',
             'Surname',
             'Code',
-            //'group_id',
+            [
+                'label'=>'Группа',
+                'value'=>
+                function ($m) {
+                    return $m->group->Title;
+                }
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

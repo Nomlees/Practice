@@ -33,10 +33,19 @@ class Student extends \yii\db\ActiveRecord
     {
         return [
             [['Name', 'group_id'], 'required'],
-            [['Code', 'group_id'], 'integer'],
+            [['Code'], 'integer'],
+            [['group_id'], 'string'],
             [['Name', 'Email', 'Surname'], 'string', 'max' => 65],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'ID']],
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getGroup()
+    {
+        return $this->hasOne(Group::className(), ['ID' => 'group_id']);
     }
 
     /**
@@ -54,11 +63,5 @@ class Student extends \yii\db\ActiveRecord
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getGroup()
-    {
-        return $this->hasOne(Group::className(), ['ID' => 'group_id']);
-    }
+
 }
