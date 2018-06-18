@@ -32,6 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'Title',
             'Curator',
             'Change',
+            [
+                'label'=>'Группа',
+                'formt' => 'html',
+                'value'=>
+                    function ($m) {
+                        $string = '';
+                        foreach ($m->students as $student) {
+                            $string .= $student->Name . ', ';
+                        }
+                        return $string;
+                    }
+            ],
         ],
     ]) ?>
 

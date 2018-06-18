@@ -36,6 +36,11 @@ class Group extends \yii\db\ActiveRecord
             [['Curator'], 'string', 'max' => 20],
         ];
     }
+    public function getStudents()
+    {
+        return $this->hasMany(Student::className(), ['group_id' => 'ID']);
+    }
+
 
     /**
      * {@inheritdoc}
@@ -46,7 +51,7 @@ class Group extends \yii\db\ActiveRecord
             'ID' => 'ID',
             'Title' => 'Title',
             'Curator' => 'Curator',
-            'Change' => 'Change',
+
         ];
     }
 

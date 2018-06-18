@@ -5,13 +5,14 @@ namespace app\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Group;
+
 
 /**
  * GroupSearch represents the model behind the search form of `app\models\Group`.
  */
-class GroupSearch extends Group
-{
+class GroupSearch extends Group {
+
+
     /**
      * {@inheritdoc}
      */
@@ -60,11 +61,12 @@ class GroupSearch extends Group
         // grid filtering conditions
         $query->andFilterWhere([
             'ID' => $this->ID,
-            'Change' => $this->Change,
+            //'Change' => $this->Change,
         ]);
-
-        $query->andFilterWhere(['like', 'Title', $this->Title])
-            ->andFilterWhere(['like', 'Curator', $this->Curator]);
+//
+//        $query->andFilterWhere(['like', 'Title', $this->Title])
+//            ->andFilterWhere(['like', 'Curator', $this->Curator])
+//            ->andFilterWhere(['like', 'Students', $this->students]);
 
         return $dataProvider;
     }

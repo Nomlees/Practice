@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Student;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\GroupSearch */
@@ -29,6 +30,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'Title',
             'Curator',
             'Change',
+
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],
