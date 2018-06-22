@@ -4,6 +4,8 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Group;
+use app\models\Subject;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Student */
@@ -23,6 +25,8 @@ use app\models\Group;
     <?= $form->field($model, 'Code')->textInput() ?>
 
     <?= $form->field($model, 'group_id')->dropDownList(ArrayHelper::map(Group::find()->all(),'ID', 'Title')) ?>
+
+    <?= $form->field($model, 'subject_buf')->checkboxList(ArrayHelper::map(Subject::find()->all(),'ID', 'Title')) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

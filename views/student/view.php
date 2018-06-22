@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+
 /* @var $this yii\web\View */
 /* @var $model app\models\Student */
 
@@ -34,13 +35,36 @@ $this->params['breadcrumbs'][] = $this->title;
             'Surname',
             'Code',
             [
-                'label'=>'Группа',
-                'value'=>
+                'label' => 'Группа',
+                'value' =>
                     function ($m) {
                         return $m->group->Title;
                     }
             ],
-            ]
+            [
+
+                'label'=>'Студенты',
+                'formt' => 'html',
+                'value'=>
+                    function ($m) {
+
+                        $string = '';
+
+
+                        foreach ($m->links as $link){
+                            $link->delete();
+                        }
+
+                        foreach ($m->links as $link) {
+                            $string .= $link->subject->Title . ' ';
+
+                        }
+
+                        return $string;
+                    }
+            ],
+
+        ]
     ]) ?>
 
 </div>

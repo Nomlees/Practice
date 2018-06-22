@@ -18,6 +18,7 @@ use Yii;
  */
 class Student extends \yii\db\ActiveRecord
 {
+    public $subject_buf;
     /**
      * {@inheritdoc}
      */
@@ -32,11 +33,12 @@ class Student extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['Name', 'group_id'], 'required'],
             [['Code'], 'integer'],
             [['group_id'], 'string'],
+            [['subject_buf'],'safe'],
             [['Name', 'Email', 'Surname'], 'string', 'max' => 65],
             [['group_id'], 'exist', 'skipOnError' => true, 'targetClass' => Group::className(), 'targetAttribute' => ['group_id' => 'ID']],
+
         ];
     }
 
@@ -46,6 +48,18 @@ class Student extends \yii\db\ActiveRecord
     public function getGroup()
     {
         return $this->hasOne(Group::className(), ['ID' => 'group_id']);
+    }
+
+
+    public function getSubject()
+    {
+        return $this->hasOne(Subject::className(), ['ID' => 'Subject']);
+    }
+
+
+    public function getLinks()
+    {
+        return $this->hasMany(SubjectToStudent::className(), ['student_id' => 'ID']);
     }
 
     /**

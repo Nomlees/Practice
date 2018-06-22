@@ -2,18 +2,17 @@
 
 namespace app\controllers;
 
-use app\models\SubjectToStudent;
 use Yii;
-use app\models\Student;
-use app\models\StudentSearch;
+use app\models\Subject;
+use app\models\SubjectSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * StudentController implements the CRUD actions for Student model.
+ * SubjectController implements the CRUD actions for Subject model.
  */
-class StudentController extends Controller
+class SubjectController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -31,12 +30,12 @@ class StudentController extends Controller
     }
 
     /**
-     * Lists all Student models.
+     * Lists all Subject models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new StudentSearch();
+        $searchModel = new SubjectSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -46,7 +45,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Displays a single Student model.
+     * Displays a single Subject model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,25 +58,15 @@ class StudentController extends Controller
     }
 
     /**
-     * Creates a new Student model.
+     * Creates a new Subject model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Student();
+        $model = new Subject();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-            if (!empty ($model->subject_buf)){
-                foreach ($model -> subject_buf as $subject_id){
-                    $link = new SubjectToStudent();
-                    $link -> student_id = $model -> ID;
-                    $link -> subject_id = $subject_id;
-                    $link -> save();
-                }
-            }
-
             return $this->redirect(['view', 'id' => $model->ID]);
         }
 
@@ -87,7 +76,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Updates an existing Student model.
+     * Updates an existing Subject model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -98,16 +87,6 @@ class StudentController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-
-
-                foreach ($model -> subject_buf as $subject_id){
-                    $link = new SubjectToStudent();
-                    $link -> student_id = $model -> ID;
-                    $link -> subject_id = $subject_id;
-                    $link -> save();
-                }
-
-
             return $this->redirect(['view', 'id' => $model->ID]);
         }
 
@@ -117,7 +96,7 @@ class StudentController extends Controller
     }
 
     /**
-     * Deletes an existing Student model.
+     * Deletes an existing Subject model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -131,15 +110,15 @@ class StudentController extends Controller
     }
 
     /**
-     * Finds the Student model based on its primary key value.
+     * Finds the Subject model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Student the loaded model
+     * @return Subject the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Student::findOne($id)) !== null) {
+        if (($model = Subject::findOne($id)) !== null) {
             return $model;
         }
 
